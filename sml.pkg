@@ -1,0 +1,5 @@
+package github.com/sjqtentacles/sml-treap
+
+require {
+  github.com/sjqtentacles/sml-prng
+}

@@ -1,0 +1,13 @@
+(* Test executable basis: the treap library (which pulls in the vendored
+   sml-prng generators) plus the harness, helpers, and per-feature suites. *)
+$(SML_LIB)/basis/basis.mlb
+
+../src/treap.mlb
+
+harness.sml
+support.sml
+test_invariants.sml
+test_splitmerge.sml
+test_determinism.sml
+entry.sml
+main.sml

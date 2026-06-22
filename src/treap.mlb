@@ -1,0 +1,10 @@
+(* MLB for the sml-treap library: the vendored sml-prng generators plus the
+ * treap functor and its default instantiations. Consumers reference this file.
+ *
+ * The dependency .mlb is brought in WITHOUT a `local` wrapper so consumers
+ * (the test suite, examples) can name the generator structures (e.g.
+ * SplitMix64) alongside `TreapFn` / `IntTreap`. *)
+$(SML_LIB)/basis/basis.mlb
+../lib/github.com/sjqtentacles/sml-prng/prng.mlb
+treap.sig
+treap.sml

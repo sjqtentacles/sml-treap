@@ -1,0 +1,35 @@
+=== sml-treap demo ============================================
+
+Seeded SplitMix64 priorities (seed = 0x9E3779B97F4A7C15).
+Inserted keys (in order): [50, 30, 70, 20, 40, 60, 80, 10, 35, 65]
+Values are k*k.   size = 10
+
+Treap (drawn sideways, root at the left;  key [p=hi16(priority)] => value):
+
+    80 [p=C584] => 6400
+70 [p=F88B] => 4900
+            65 [p=657E] => 4225
+                60 [p=2C82] => 3600
+        50 [p=6E78] => 2500
+            40 [p=53CB] => 1600
+    35 [p=F3B8] => 1225
+                30 [p=06C4] => 900
+            20 [p=1B39] => 400
+        10 [p=3EE5] => 100
+
+In-order traversal (sorted by key, the BST invariant):
+  [10->100, 20->400, 30->900, 35->1225, 40->1600, 50->2500, 60->3600, 65->4225, 70->4900, 80->6400]
+
+Invariants:
+  validBST  = true
+  validHeap = true
+
+Structural fingerprint (pre-order key:priority; byte-identical):
+  (70:F88BB8A8724C81EC (35:F3B8488C368CB0A6 (10:3EE5789041C98AC3 . (20:1B39896A51A8749B . (30:6C45D188009454F . .))) (50:6E789E6AA1B965F4 (40:53CB9F0C747EA2EA . .) (65:657EECDD3CB13D09 (60:2C829ABE1F4532E1 . .) .))) (80:C584133AC916AB3C . .))
+
+split t 50:
+  left  (keys < 50)  = [10, 20, 30, 35, 40]
+  right (keys >= 50) = [50, 60, 65, 70, 80]
+  merge(left,right) reproduces t : true
+
+===============================================================
