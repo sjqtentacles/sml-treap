@@ -5,6 +5,7 @@ fun runAllSuites () =
   ; InvariantTests.run ()
   ; SplitMergeTests.run ()
   ; DeterminismTests.run ()
+  ; PropertyTests.run ()
   ; Harness.run () )
 
 fun main () =

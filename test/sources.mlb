@@ -1,6 +1,25 @@
 (* Test executable basis: the treap library (which pulls in the vendored
-   sml-prng generators) plus the harness, helpers, and per-feature suites. *)
+   sml-prng generators) plus the harness, helpers, and per-feature suites.
+
+   sml-check is a TEST-only dependency (the library's production dependency
+   is only sml-prng, pulled in unwrapped by ../src/treap.mlb so consumers can
+   name SplitMix64 directly). Include order for the flat Poly/ML `use` model
+   (tools/polybuild): sml-prng -> sml-test (check.sig references Test.test in
+   its toTest bridge) -> sml-check -> our own Harness -> the library under
+   test -> the suites -> entry/main shims. This creates a second, independent
+   copy of the Prng/SplitMix64 structures used only by Check; MLB scopes each
+   imported .mlb file's basis from its own contents, so ../src/treap.mlb's
+   own (self-contained) import of sml-prng is unaffected, and IntTreap /
+   StringTreap (already fully instantiated inside treap.sml) never cross
+   the two instances. *)
 $(SML_LIB)/basis/basis.mlb
+
+../lib/github.com/sjqtentacles/sml-prng/prng.sig
+../lib/github.com/sjqtentacles/sml-prng/prng.sml
+../lib/github.com/sjqtentacles/sml-test/test.sig
+../lib/github.com/sjqtentacles/sml-test/test.sml
+../lib/github.com/sjqtentacles/sml-check/check.sig
+../lib/github.com/sjqtentacles/sml-check/check.sml
 
 ../src/treap.mlb
 
@@ -9,5 +28,6 @@ support.sml
 test_invariants.sml
 test_splitmerge.sml
 test_determinism.sml
+test_properties.sml
 entry.sml
 main.sml
