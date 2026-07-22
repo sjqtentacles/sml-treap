@@ -1,5 +1,7 @@
 # sml-treap
 
+[![CI](https://github.com/sjqtentacles/sml-treap/actions/workflows/ci.yml/badge.svg)](https://github.com/sjqtentacles/sml-treap/actions/workflows/ci.yml)
+
 A persistent (purely functional) **treap** in pure Standard ML — a binary
 search tree that is simultaneously a max-heap on per-node priorities, giving
 expected-logarithmic operations without explicit balancing. Priorities are
